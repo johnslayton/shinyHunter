@@ -6,6 +6,7 @@ from time import sleep, time
 dimensions = [1200, 800]
 
 def startup():
+    # sets dimensions of window
     getDimensions()
     # initialize pydirectinput
     pydirectinput.FAILSAFE = True
@@ -20,7 +21,7 @@ def countdownTimer():
 
 def main():
     countdownTimer()
-    startup()    
+    startup()     
     grass_encounter()
 
 if __name__ == '__main__':
