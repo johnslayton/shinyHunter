@@ -22,7 +22,7 @@ def countdownTimer():
 def main():
     countdownTimer()
     startup()     
-    grass_encounter()
+    go()
 
 if __name__ == '__main__':
     main()

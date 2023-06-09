@@ -12,9 +12,9 @@ def callback(hwnd, extra):
         y = rect[1]
         w = rect[2] - x
         h = rect[3] - y
-        # print("Window %s:" % win32gui.GetWindowText(hwnd))
-        # print("\tLocation: (%d, %d)" % (x, y))
-        # print("\t    Size: (%d, %d)" % (w, h))
+        print("Window %s:" % win32gui.GetWindowText(hwnd))
+        print("\tLocation: (%d, %d)" % (x, y))
+        print("\t    Size: (%d, %d)" % (w, h))
 
         # resize for consistency
         win32gui.MoveWindow(hwnd, 0, 0, 1200, 800, True)

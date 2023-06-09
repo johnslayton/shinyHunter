@@ -9,8 +9,7 @@ import numpy as np
 # Released at (1154, 52)
 #
 coords = [45, 52, 1155, 790]
-image_window = "Source Image"
-result_window = "Result window"
+
 
 def convert_from_cv2_to_image(img: np.ndarray) -> Image:
     # return Image.fromarray(img)
@@ -49,8 +48,9 @@ def detect():
         # Show the final image with the matched area.
 
     # if flag:
-        # cv2.imshow('Detected', img_rgb)
-        # cv2.waitKey(0)
+    #     print('wild pokemon appeared')
+    #     cv2.imshow('Detected', img_rgb)
+    #     cv2.waitKey(0)
     return flag
 
     # TODO: check that the found wild is in the correct area
