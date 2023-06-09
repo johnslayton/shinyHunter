@@ -1,0 +1,1 @@
+# preprocess shiny images for easy detection
