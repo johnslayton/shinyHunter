@@ -18,9 +18,12 @@ def callback(hwnd, extra):
 
         # resize for consistency
         win32gui.MoveWindow(hwnd, 0, 0, 1200, 800, True)
+        goToWindow(hwnd)
         global dims
         dims = [w,h]
 
+def goToWindow(window):
+    win32gui.SetForegroundWindow(window)
 
 def getDimensions():
     win32gui.EnumWindows(callback, None)

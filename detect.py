@@ -23,7 +23,7 @@ def convert_from_image_to_cv2(img: Image) -> np.ndarray:
 
 def detect():
     # take screenshot
-    print("detect")
+    # print("detect")
     # win32gui.MoveWindow(hwnd, 0, 800, 0, 1200, True)
     im=ImageGrab.grab(bbox=(coords[0],coords[1],coords[2],coords[3]))
     # im.show()
@@ -40,16 +40,23 @@ def detect():
     loc = np.where(result >= threshold)
     # Draw a rectangle around the matched region.
     # print(loc)
-    if len(loc) == 0:
-        for pt in zip(*loc[::-1]):
-            cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0, 255, 255), 2)
-        
+    # if len(loc) > 0:
+    flag = False
+    for pt in zip(*loc[::-1]):
+        # print("asdf")
+        flag = True
+        cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0, 255, 255), 2)
         # Show the final image with the matched area.
-        cv2.imshow('Detected', img_rgb)
+
+    # if flag:
+        # cv2.imshow('Detected', img_rgb)
+        # cv2.waitKey(0)
+    return flag
 
     # TODO: check that the found wild is in the correct area
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
     print(min_val, max_val, min_loc, max_loc)
+    return False
     # test=ImageGrab.grab(bbox=(387, 64, 565, 88))
     # test.show()
     # confidence = result
@@ -61,7 +68,7 @@ def detect():
     # cv2.rectangle(result, matchLoc, (matchLoc[0] + wild.shape[0], matchLoc[1] + wild.shape[1]), (0,0,0), 2, 8, 0 )
     # cv2.imshow(image_window, img_display)
     # cv2.imshow(result_window, result)
-    cv2.waitKey(0)
+    # cv2.waitKey(0)
     # img_gray = cv2.cvtColor(convert_from_image_to_cv2(im), cv2.COLOR_BGR2GRAY)
     # img_rgb = cv2.cvtColor(convert_from_image_to_cv2(im), cv2.COLOR_BGR2RGB)
     # img_rgb.show()
@@ -70,7 +77,7 @@ def detect():
     # plt.show()
     #got image
 
-detect()
+# detect()
 
 def saveClipboard():
     im = ImageGrab.grabclipboard()
