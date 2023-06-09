@@ -20,9 +20,10 @@ def countdownTimer():
     print("Go")
 
 def main():
+    # TODO: input from user, up and down, left and right, how many, etc.
     countdownTimer()
     startup()     
-    go()
+    encounter()
 
 if __name__ == '__main__':
     main()

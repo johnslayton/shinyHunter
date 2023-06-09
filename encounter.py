@@ -10,10 +10,11 @@ encounter_flag = threading.Event()
 
 def wild_encounter():
     while not encounter_flag.is_set():
-        if detect():
+        if detect_wild():
             encounter_flag.set()
 
-    
+def shiny_detect():
+    print("sparkles")
 
 def grass_encounter():
     # TODO: do vertical or horizontal
@@ -63,7 +64,7 @@ def grass_encounter():
     # pydirectinput.press('w')
     # encounter_flag.is_set()
 
-def go():
+def encounter():
     sleep(2)
     t1 = threading.Thread(target=wild_encounter, name='t1')
     t2 = threading.Thread(target=grass_encounter, name='t2') 
@@ -75,3 +76,10 @@ def go():
     # t2.join()
     # encounter_flag.set()
     t2.join()
+    print('wild detected')
+    if detect_template('smarill'):
+        print('shiny')
+    else:
+        print('not shiny')
+
+
