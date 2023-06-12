@@ -58,7 +58,7 @@ def leave():
     sleep(2)
 
 # TODO: thread that will close out of popups
-def encounter():
+def encounter(direction, dist):
     # sleep(1)
     t1 = threading.Thread(target=wild_encounter, name='t1')
     # t2 = threading.Thread(target=circle_encounter, name='t2') 

@@ -14,27 +14,10 @@ def moveGrassTile(num, direction):
 
 def runGrassTile(num, direction):
     run = 0.15
-    # pydirectinput.keyDown('z')
     pydirectinput.keyDown(direction)
     sleep(run * (num - 2))
     pydirectinput.keyUp(direction)
     sleep(.05)
-    # pydirectinput.keyUp('z')
-    # sleep(.05)
-
-
-def move_right(num_tiles, speed=0):
-    if speed == 1:
-        runGrassTile(num_tiles, 'd')
-    else:
-        moveGrassTile(num_tiles, 'd')
-
-
-def move_left(num_tiles, speed=1):
-    if speed == 1:
-        runGrassTile(num_tiles, 'a')
-    else:
-        moveGrassTile(num_tiles, 'a')
 
 # sleep(2)
 # pydirectinput.keyDown('z')
