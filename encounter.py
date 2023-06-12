@@ -20,34 +20,9 @@ def wild_encounter():
 def shiny_detect():
     print("sparkles")
 
-def circle_encounter():
-    timeout = 30
-    start_time = time()
-    # pydirectinput.keyDown('z')
-    sleep(2)
-    while not encounter_flag.is_set():
-        # playActions("tools\\recordings\\script1.json")
-        pydirectinput.keyDown("w")
-        # sleep(.0001)
-        pydirectinput.keyUp("w")
-        sleep(.0001)
-        pydirectinput.keyDown("a")
-        # sleep(.0001)
-        pydirectinput.keyUp("a")
-        sleep(.0001)
-        pydirectinput.keyDown("s")
-        # sleep(.0001)
-        pydirectinput.keyUp("s")
-        sleep(.0001)
-        pydirectinput.keyDown("d")
-        # sleep(.0001)
-        pydirectinput.keyUp("d")
-        sleep(.0001)
-        # Check if the timeout has been reached
-        elapsed_time = time() - start_time
-        if elapsed_time >= timeout:
-            break
 
+# TODO: currently have to face not direction you're running
+# when starting
 def grass_encounter(distance):
     # TODO: do vertical or horizontal
     # take input for dimensions
@@ -60,11 +35,11 @@ def grass_encounter(distance):
     start_time = time()
     # pydirectinput.keyDown('z')
     while not encounter_flag.is_set():
-        moveGrassTile(distance, 'd')
-        moveGrassTile(distance, 'a')
-        elapsed_time = time() - start_time
-        if elapsed_time >= timeout:
-            break
+        runGrassTile(4, 'd')
+        runGrassTile(4, 'a')
+        # elapsed_time = time() - start_time
+        # if elapsed_time >= timeout:
+        #     break
 
 
 def leave():
@@ -72,7 +47,7 @@ def leave():
     print("leave")
     sleep(3)
     # TODO: abilities delay input, so gotta figure that out
-    pydirectinput.press('x')
+    # pydirectinput.press('x')
     sleep(6)
     pydirectinput.press('s')
     pydirectinput.press('d')
@@ -86,7 +61,7 @@ def encounter():
     # sleep(1)
     t1 = threading.Thread(target=wild_encounter, name='t1')
     # t2 = threading.Thread(target=circle_encounter, name='t2') 
-    t2 = threading.Thread(target=grass_encounter,args={4},name='t2') 
+    t2 = threading.Thread(target=grass_encounter,args={3},name='t2') 
     t3 = threading.Thread(target=leave, name='t3') 
     t1.start()
     t2.start()

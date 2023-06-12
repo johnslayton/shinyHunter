@@ -1,0 +1,14 @@
+[
+    {
+        "time": 5.264286279678345,
+        "type": "keyDown",
+        "button": "d",
+        "pos": null
+    },
+    {
+        "time": 5.578571796417236,
+        "type": "keyUp",
+        "button": "d",
+        "pos": null
+    }
+]
