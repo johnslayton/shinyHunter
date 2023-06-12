@@ -5,20 +5,21 @@ import threading
 import msvcrt
 
 # walking
-def moveGrassTile(num, direction, speed):
-    walk = 0.29
+def moveGrassTile(num, direction):
+    walk = 0.3
     pydirectinput.keyDown(direction)
-    sleep(walk * (num - 1))
+    sleep(walk * (num - 2))
     pydirectinput.keyUp(direction)
-    sleep(.25)
+    sleep(.1)
 
 def runGrassTile(num, direction):
     run = 0.15
-    pydirectinput.keyDown('z')
+    # pydirectinput.keyDown('z')
     pydirectinput.keyDown(direction)
-    sleep(run * (num - 1))
+    sleep(run * (num - 2))
     pydirectinput.keyUp(direction)
-    pydirectinput.keyUp('z')
+    sleep(.05)
+    # pydirectinput.keyUp('z')
     # sleep(.05)
 
 
@@ -35,7 +36,11 @@ def move_left(num_tiles, speed=1):
     else:
         moveGrassTile(num_tiles, 'a')
 
-sleep(2)
-while 1:
-    runGrassTile(4, 'd')
-    runGrassTile(4, 'a')
+# sleep(2)
+# pydirectinput.keyDown('z')
+# while 1:
+#     # moveGrassTile(6, 'd')
+#     # moveGrassTile(6, 'a')
+    
+#     runGrassTile(9, 'd')
+#     runGrassTile(9, 'a')

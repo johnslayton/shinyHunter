@@ -33,13 +33,14 @@ def grass_encounter(distance):
     # sleep(2)
     timeout = 30
     start_time = time()
-    # pydirectinput.keyDown('z')
+    pydirectinput.keyDown('z')
     while not encounter_flag.is_set():
-        runGrassTile(4, 'd')
-        runGrassTile(4, 'a')
-        # elapsed_time = time() - start_time
-        # if elapsed_time >= timeout:
-        #     break
+        runGrassTile(distance, 'd')
+        runGrassTile(distance, 'a')
+        elapsed_time = time() - start_time
+        if elapsed_time >= timeout:
+            pydirectinput.keyUp('z')
+            break
 
 
 def leave():
@@ -47,7 +48,7 @@ def leave():
     print("leave")
     sleep(3)
     # TODO: abilities delay input, so gotta figure that out
-    # pydirectinput.press('x')
+    pydirectinput.press('x')
     sleep(6)
     pydirectinput.press('s')
     pydirectinput.press('d')
@@ -61,8 +62,9 @@ def encounter():
     # sleep(1)
     t1 = threading.Thread(target=wild_encounter, name='t1')
     # t2 = threading.Thread(target=circle_encounter, name='t2') 
-    t2 = threading.Thread(target=grass_encounter,args={3},name='t2') 
+    t2 = threading.Thread(target=grass_encounter,args={9},name='t2') 
     t3 = threading.Thread(target=leave, name='t3') 
+    # pydirectinput.keyDown('z')
     t1.start()
     t2.start()
     
@@ -72,9 +74,9 @@ def encounter():
     # encounter_flag.set()
     t2.join()
     if detect_template('smarill'):
-        print('asdf')
+        print('smarill spotted')
     else:
-        print('qwer')
+        print('nah')
         t3.start()
         t3.join()
 
