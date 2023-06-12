@@ -59,7 +59,7 @@ def detect_wild():
 
 def detect_template(template):
 
-    grab = ImageGrab.grab(bbox=(0,0, 1200, 800))
+    grab = ImageGrab.grab(bbox=(530,130, 1150, 420))
     source_image = convert_from_image_to_cv2(grab)
     template_image = cv2.imread("images\\" + template + ".png")
     source_hsv = cv2.cvtColor(source_image, cv2.COLOR_BGR2HSV)
@@ -79,10 +79,27 @@ def detect_template(template):
     bottom_right = (top_left[0] + template_width, top_left[1] + template_height)
 
     # Draw a bounding box around the detected match
-    cv2.rectangle(source_image, top_left, bottom_right, (0, 255, 255), 2)
-    cv2.imshow('Result', source_image)
-    cv2.waitKey(0)
-    return source_image
+    # cv2.rectangle(source_image, top_left, bottom_right, (0, 255, 255), 2)
+    # cv2.imshow('Result', source_image)
+    # cv2.waitKey(0)
+    # Specify a threshold
+    w, h = cv2.imread("images\\" + template + ".png", 0).shape[::-1]
+    threshold = 0.45
+    # Store the coordinates of matched area in a numpy array
+    loc = np.where(result >= threshold)
+    # Draw a rectangle around the matched region.
+    # flag for if wild was found
+    flag = False
+    for pt in zip(*loc[::-1]):
+        flag = True
+        cv2.rectangle(source_image, pt, (pt[0] + w, pt[1] + h), (0, 255, 255), 2)
+        # Show the final image with the matched area.
+
+    if flag:
+        print('Shiny pokemon appeared')
+        cv2.imshow('Detected', source_image)
+        cv2.waitKey(0)
+    return flag
 # def detect_template(template):
 #         # Specify a threshold
 #     threshold = 0.9
@@ -131,7 +148,7 @@ def detect_template(template):
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
     print(min_val, max_val, min_loc, max_loc)
     return False
-detect_template('shiny_marill')
+# detect_template('shiny_marill')
 
 def saveClipboard(name):
     im = ImageGrab.grabclipboard()
