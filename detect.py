@@ -29,7 +29,7 @@ def detect_wild():
     im=ImageGrab.grab(bbox=(coords[0],coords[1],coords[2],coords[3]))
     # im.show()
     # template
-    wild = cv2.imread("images\\wild.png", 0)
+    wild = cv2.imread("images\\text\\wild.png", 0)
 
     # convert to cv2 for matching
     img_rgb = convert_from_image_to_cv2(im)
