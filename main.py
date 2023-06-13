@@ -5,46 +5,11 @@ from time import sleep, time
 import keyboard
 import tkinter as tk
 import msvcrt
+from tkinter import simpledialog, ttk
+from tkinter import *
 
 dimensions = [1200, 800]
 
-def winput(title, sentence):
-    import tkinter as tk
-    from tkinter import simpledialog
-    tk.Tk().withdraw()
-    y = simpledialog.askinteger(title, sentence)
-    return y
-
-
-
-# class Example(tk.Frame):
-#     def __init__(self, parent):
-#         tk.Frame.__init__(self, parent)
-
-#         # create a prompt, an input box, an output label,
-#         # and a button to do the computation
-#         self.prompt = tk.Label(self, text="Enter a number:", anchor="w")
-#         self.entry = tk.Entry(self)
-#         self.submit = tk.Button(self, text="Submit", command = self.calculate)
-#         self.output = tk.Label(self, text="")
-
-#         # lay the widgets out on the screen. 
-#         self.prompt.pack(side="top", fill="x")
-#         self.entry.pack(side="top", fill="x", padx=20)
-#         self.output.pack(side="top", fill="x", expand=True)
-#         self.submit.pack(side="right")
-
-#     def calculate(self):
-#         # get the value from the input widget, convert
-#         # it to an int, and do a calculation
-#         try:
-#             i = int(self.entry.get())
-#             result = "%s*2=%s" % (i, i*2)
-#         except ValueError:
-#             result = "Please enter digits only"
-
-#         # set the output widget to have our result
-#         self.output.configure(text=result)
 
 
 
@@ -62,15 +27,76 @@ def countdownTimer():
         sleep(.25)
     print("Go")
 
+
+def winput(title, sentence):
+    tk.Tk().withdraw()
+    y = simpledialog.askinteger(title, sentence)
+    return y
+
+
+
+# Dropdown menu options
+options = [
+    "right-left",
+    "left-right",
+    "up-down",
+    "down-up"
+]
+
+     
 def main():
-    dist = winput("What distance are you running")
-    direction = winput("What direction are you running?")
-    # TODO: input from user, up and down, left and right, how many, etc.
+
+    # declaring string variable
+    # for storing name and password
+
+    #Create an instance of Tkinter frame
+    win= Tk()
+    #Set the geometry of Tkinter frame
+    win.geometry("750x250")
+    win.title("Hunter Input")
+    num_var=tk.IntVar()
+    way_var=tk.StringVar()
+    def submit():
+        global dist
+        global direction
+        dist=num_var.get()
+        direction=way_var.get()
+        win.destroy()
+
+    # creating a label for
+    # name using widget Label
+    name_label = tk.Label(win, text = 'Distance', font=('calibre',10, 'bold'))
+    
+    # creating a entry for input
+    # name using widget Entry
+    name_entry = tk.Entry(win,textvariable = num_var, font=('calibre',10,'normal'))
+    
+    # creating a label for password
+    # passw_label = tk.Label(win, text = 'Direction', font = ('calibre',10,'bold'))
+    passw_label = OptionMenu( win , way_var , *options )
+    
+    # creating a entry for password
+    passw_entry=tk.Entry(win, textvariable = way_var, font = ('calibre',10,'normal'))
+    
+    # creating a button using the widget
+    # Button that will call the submit function
+    sub_btn=tk.Button(win,text = 'Submit', command = submit)
+    name_label.grid(row=0,column=0)
+    name_entry.grid(row=0,column=1)
+    passw_label.grid(row=1,column=0)
+    passw_entry.grid(row=1,column=1)
+    sub_btn.grid(row=2,column=1)
+    win.mainloop()
+    # print(dist, direction)
+
     countdownTimer()
     startup()
-    # while 1
-    # gonna need a keyboard interupt
-    encounter(direction, dist)
+    # grass_encounter(dist, direction)
+    # dist = winput("What distance are you running")
+    # direction = winput("What direction are you running?")
+    # TODO: input from user, up and down, left and right, how many, etc.
+    # # gonna need a keyboard interupt
+    encounter(dist, direction)
 
 if __name__ == '__main__':
     main()

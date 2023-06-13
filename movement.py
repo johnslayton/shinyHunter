@@ -17,7 +17,7 @@ def runGrassTile(num, direction):
     pydirectinput.keyDown(direction)
     sleep(run * (num - 2))
     pydirectinput.keyUp(direction)
-    sleep(.05)
+    sleep(.1)
 
 # sleep(2)
 # pydirectinput.keyDown('z')
